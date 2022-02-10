@@ -22,7 +22,7 @@ function SortPopap({items}) {
         setVisiblePopup(false);
         setActiveSearch(item)
     }
-
+    console.log(activeSearch)
     useEffect(() => {
         document.body.addEventListener('click', handleOutsideClick)
     },[])
@@ -52,9 +52,9 @@ function SortPopap({items}) {
       <ul>
       {items && items.map((item,i) => {return  <li 
             className={activeItem === i ? 'active' : ''}
-            onClick={()=>onSelectItem(item,i) } 
-            key={`${item}_${i}`}
-            >{item}</li>})}
+            onClick={()=>onSelectItem(item.name,i) } 
+            key={`${item.type}_${i}`}
+            >{item.name}</li>})}
       </ul>
     </div>}
   </div>);
