@@ -3,17 +3,18 @@ import { Routes, Route } from "react-router-dom";
 import {Header} from './components'
 import {Home, Cart} from "./components/pages";
 import axios from "axios";
-import {connect} from 'react-redux'
+import { useDispatch } from "react-redux";
 import setPizzas from './redux/actions/pizzas'
 
-function App(props) {
-  const {items, setPizzas}=props;
+function App() {
+
+  
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    axios.get('http://localhost:3000/db.json')
+    axios.get('http://localhost:3001/pizzas?_sort=price&_order=asc')
       .then(({data}) => {
-        console.log(data)
-        setPizzas(data.pizzas)
+        dispatch(setPizzas(data));
       })
   },[])
 
@@ -23,8 +24,8 @@ function App(props) {
     <Header/>
       <div className="content">
       <Routes>
-        <Route path="/" exact element={<Home items={items}/>}/>
-        <Route path="/cart" exact element={<Cart/>}/> 
+        <Route path="/" exact element={<Home/>}/>
+        <Route path="/cart"  element={<Cart/>}/> 
       </Routes>
       </div>
     </div>
@@ -32,16 +33,6 @@ function App(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return{
-   items: state.pizzas.items,
 
-}
-}
-const mapDispatchToProps = {
-  setPizzas
-}
+export default App;
 
-
-
-export default connect(mapStateToProps,mapDispatchToProps)(App);
