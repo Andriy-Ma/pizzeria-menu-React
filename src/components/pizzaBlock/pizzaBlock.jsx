@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import PropTypes from 'proptypes';
 import classNames from 'classnames';
 
 function PizzaBlock({name, imageUrl, price, types, sizes}) {
@@ -77,6 +78,22 @@ function PizzaBlock({name, imageUrl, price, types, sizes}) {
   );
 }
 
+PizzaBlock.propTypes = {
+  name: PropTypes.string,
+  imageUrl: PropTypes.string,
+  price: PropTypes.number,
+  types: PropTypes.arrayOf(PropTypes.number),
+  sizes: PropTypes.arrayOf(PropTypes.number),
+  onClickAddPizza: PropTypes.func,
+  addedCount: PropTypes.number,
+};
+
+PizzaBlock.defaultProps = {
+  name: '---',
+  price: 0,
+  types: [],
+  sizes: [],
+};
 
 
 
