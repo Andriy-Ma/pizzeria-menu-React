@@ -1,3 +1,4 @@
 import Home from "./home";
 import Cart from "./cart";
-export{Home,Cart};
+import CartItem from "./cartItem";
+export{Home,Cart,CartItem };
